@@ -1,4 +1,4 @@
-import{createGlobalStyle}  from 'styled-components'
+import { createGlobalStyle } from "styled-components";
 const GlobalStyles = createGlobalStyle`
 
 
@@ -9,8 +9,10 @@ const GlobalStyles = createGlobalStyle`
 }
 
 body{
-    background-color: ${props => props.theme.background};
+    background-color: ${(props) => props.theme.background};
+    font-family: space-mono, monospace;
+  
 }
-`
+`;
 
-export default GlobalStyles; 
+export default GlobalStyles;

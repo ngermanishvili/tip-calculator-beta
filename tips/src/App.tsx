@@ -1,24 +1,8 @@
 import React, { useEffect, useState } from "react";
 import GlobalStyles from "./components/GlobalStyles";
 import styled, { ThemeProvider } from "styled-components";
-import dollarIcon from '../src/assets/images/icon-dollar.svg';
-
-
-const defaultTheme = {
-  colors: {
-    cyan: {
-      strong: "hsl(172, 67%, 45%)",
-      dark: "hsl(183, 100%, 15%)",
-      grayish: "hsl(184, 14%, 56%)",
-      darkGrayish: "hsl(184, 14%, 56%)",
-      lightGrayish: "hsl(185, 41%, 84%)",
-      extraLightGrayish: "hsl(189, 41%, 97%)",
-    },
-    white: "hsl(0, 0%, 100%)",
-  },
-  background: "#C5E4E7",
-  inputBackground: "#F3F9FA;",
-};
+import dollarIcon from "../src/assets/images/icon-dollar.svg";
+import { defaultTheme } from "./themes/defaultTheme";
 
 export default function Calculator() {
   const [bill, setBill] = useState<number | undefined>(undefined);
@@ -50,14 +34,14 @@ export default function Calculator() {
       <div className="App">
         Bill:
         <Input
-          placeholder="bill"
+          placeholder="0"
           type="number"
           min={0}
           value={bill}
           onChange={(e) => {
             setBill(e.target.valueAsNumber);
           }}
-          dir='rtl'
+          dir="rtl"
         />
         <div>
           <button
@@ -137,11 +121,3 @@ export default function Calculator() {
   );
 }
 
-const Input = styled.input`
-  background: url(${dollarIcon});
-  background-color: ${(props) => props.theme.inputBackground};
-  background-repeat: no-repeat;
-text-align: right;
-
-
-`;
