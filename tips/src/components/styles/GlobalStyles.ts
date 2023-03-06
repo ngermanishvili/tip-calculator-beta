@@ -11,7 +11,9 @@ const GlobalStyles = createGlobalStyle`
 body{
     background-color: ${(props) => props.theme.background};
     font-family: space-mono, monospace;
-  
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
 }
 `;
 
