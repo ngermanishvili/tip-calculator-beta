@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import GlobalStyles from "./components/GlobalStyles";
-import styled, { ThemeProvider } from "styled-components";
-import dollarIcon from "../src/assets/images/icon-dollar.svg";
+import { ThemeProvider } from "styled-components";
 import { defaultTheme } from "./themes/defaultTheme";
+import { Input } from "./components/input";
 
 export default function Calculator() {
   const [bill, setBill] = useState<number | undefined>(undefined);
@@ -20,6 +20,8 @@ export default function Calculator() {
     totalPerPerson === "NaN" || totalPerPerson === "Infinity"
   );
 
+  const MAX_PERSONS = 9;
+
   useEffect(() => {
     if (people === 0) {
       setPeopleError(true);
@@ -34,12 +36,15 @@ export default function Calculator() {
       <div className="App">
         Bill:
         <Input
+          iconType="bill"
           placeholder="0"
           type="number"
           min={0}
           value={bill}
           onChange={(e) => {
-            setBill(e.target.valueAsNumber);
+            if (e.target.value.length < 9) {
+              setBill(e.target.valueAsNumber);
+            }
           }}
           dir="rtl"
         />
@@ -79,20 +84,25 @@ export default function Calculator() {
           >
             50%
           </button>
-          <input
-            placeholder="custom"
+
+          <Input
+            iconType="person"
+            placeholder="Custom"
             type="number"
             min={0}
-            max={100}
             value={tip && tip * 100}
             onChange={(e) => {
-              setTip(e.target.valueAsNumber / 100);
+              if(e.target.value.length < 4){
+                setTip(e.target.valueAsNumber / 100);
+              }
+
             }}
           />
         </div>
         People:
-        <input
-          placeholder="number of people"
+        <Input
+          iconType="person"
+          placeholder="0"
           type="number"
           value={people}
           min={0}
@@ -102,7 +112,9 @@ export default function Calculator() {
             }
           }}
           onChange={(e) => {
-            setPeople(e.target.valueAsNumber);
+            if (e.target.value.length < MAX_PERSONS) {
+              setPeople(e.target.valueAsNumber);
+            }
           }}
         />
         <div style={{ color: "red" }}>
@@ -120,4 +132,3 @@ export default function Calculator() {
     </ThemeProvider>
   );
 }
-
