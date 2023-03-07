@@ -4,10 +4,10 @@ import styled, { ThemeProvider } from "styled-components";
 import { defaultTheme } from "./themes/defaultTheme";
 import { Input } from "./components/Input";
 import Logo from "../src/assets/images/logo.svg";
-import Text from "./components/styles/Label";
 import ResetBtn from "./components/styles/ResetButton";
 import Bill, { BillName, PerName } from "./components/styles/Bill";
 import Tip from "./components/Tip";
+import Text from "./components/styles/Label";
 
 export default function Calculator() {
   const [bill, setBill] = useState<number | undefined>(undefined);
@@ -78,10 +78,12 @@ export default function Calculator() {
                 }
               }}
             />
+            <Text />
           </InputsContainer>
-          {/* <div style={{ color: "red" }}>
+          <div style={{ color: "red" }}>
             {peopleError ? `Can't Be Zero` : null}
-          </div> */}
+            
+          </div>
           <ResultContainer>
             <BillContainer>
               <div>
@@ -98,6 +100,7 @@ export default function Calculator() {
               </div>
               <Bill>{showTotal ? totalPerPerson : "$0.00"}</Bill>
             </BillContainer>
+
             <ResetBtn>RESET</ResetBtn>
           </ResultContainer>
         </CalculatorContainer>
